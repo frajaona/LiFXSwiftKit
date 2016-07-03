@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LiFXDevice {
+public class LiFXDevice {
     
     static let maxPowerLevel = 65535
     static let minPowerLevel = 0
@@ -30,7 +30,7 @@ class LiFXDevice {
     let port: Int
     let service: UInt8
     let address: String
-    var label: String?
+    public var label: String?
     var group: LiFXGroup?
     
     var stateMessage: LiFXMessage!
@@ -42,7 +42,7 @@ class LiFXDevice {
     var brightness = 0
     var kelvin = 0
     
-    var uid: String {
+    public var uid: String {
         return address + ":" + port.description
     }
     

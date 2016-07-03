@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol LiFXDeviceManagerObserver {
+public protocol LiFXDeviceManagerObserver {
     var observerHashValue: String { get }
     func onDeviceListChanged(newList: [LiFXDevice])
 }
 
-class LiFXDeviceManager {
+public class LiFXDeviceManager {
     
-    static let sharedInstance = LiFXDeviceManager()
+    public static let sharedInstance = LiFXDeviceManager()
     
-    var devices = [String: LiFXDevice]()
+    public var devices = [String: LiFXDevice]()
     
     private var session = LiFXSession()
     
@@ -36,17 +36,17 @@ class LiFXDeviceManager {
         session.delegate = self
     }
     
-    func registerDeviceListObserver(observer: LiFXDeviceManagerObserver) {
+    public func registerDeviceListObserver(observer: LiFXDeviceManagerObserver) {
         if deviceListObservable[observer.observerHashValue] == nil {
             deviceListObservable[observer.observerHashValue] = observer
         }
     }
     
-    func unregisterDeviceListObserver(observer: LiFXDeviceManagerObserver) {
+    public func unregisterDeviceListObserver(observer: LiFXDeviceManagerObserver) {
         deviceListObservable[observer.observerHashValue] = nil
     }
     
-    func loadDevices() {
+    public func loadDevices() {
         if session.isConnected() {
             notifyDeviceListObservers()
         } else {
@@ -54,19 +54,19 @@ class LiFXDeviceManager {
         }
     }
     
-    func switchOnDevices() {
+    public func switchOnDevices() {
         for (_, device) in devices {
             device.switchOn()
         }
     }
     
-    func switchOffDevices() {
+    public func switchOffDevices() {
         for (_, device) in devices {
             device.switchOff()
         }
     }
     
-    func switchOn(deviceUid: String) {
+    public func switchOn(deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.switchOn()
@@ -74,7 +74,7 @@ class LiFXDeviceManager {
         }
     }
     
-    func switchOff(deviceUid: String) {
+    public func switchOff(deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.switchOff()
@@ -82,7 +82,7 @@ class LiFXDeviceManager {
         }
     }
     
-    func switchOnGroup(group: String) {
+    public func switchOnGroup(group: String) {
         for (_, device) in devices {
             if let deviceGroup = device.group where deviceGroup.label == group {
                 device.switchOn()
@@ -90,7 +90,7 @@ class LiFXDeviceManager {
         }
     }
     
-    func switchOffGroup(group: String) {
+    public func switchOffGroup(group: String) {
         for (_, device) in devices {
             if let deviceGroup = device.group where deviceGroup.label == group {
                 device.switchOff()
@@ -98,7 +98,7 @@ class LiFXDeviceManager {
         }
     }
     
-    func toggle(deviceUid: String) {
+    public func toggle(deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.toggle()
@@ -106,13 +106,13 @@ class LiFXDeviceManager {
         }
     }
     
-    func toggleDevices() {
+    public func toggleDevices() {
         for (_, device) in devices {
             device.toggle()
         }
     }
     
-    func toggleGroup(group: String) {
+    public func toggleGroup(group: String) {
         for (_, device) in devices {
             if let deviceGroup = device.group where deviceGroup.label == group {
                 device.toggle()
@@ -134,13 +134,13 @@ class LiFXDeviceManager {
         }
     }
     
-    func setBrightness(brightness: Int) {
+    public func setBrightness(brightness: Int) {
         for (_, device) in devices {
             device.setBrightness(brightness)
         }
     }
     
-    func setBrightness(deviceUid: String, brightness: Int) {
+    public func setBrightness(deviceUid: String, brightness: Int) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.setBrightness(brightness)
