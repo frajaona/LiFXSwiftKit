@@ -371,7 +371,7 @@
 				B61541F31D294C7700091E73 /* Device */,
 				B61541F91D294D4D00091E73 /* AppleScriptCommands */,
 			);
-			name = Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		B61541F31D294C7700091E73 /* Device */ = {

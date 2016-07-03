@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:LiFXSwiftKit.podspec">
+   </FileRef>
+   <FileRef
       location = "group:LiFXSwiftKit.xcodeproj">
    </FileRef>
    <FileRef
