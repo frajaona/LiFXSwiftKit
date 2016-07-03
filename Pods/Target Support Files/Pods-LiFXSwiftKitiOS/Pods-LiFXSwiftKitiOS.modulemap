@@ -1,0 +1,6 @@
+framework module Pods_LiFXSwiftKitiOS {
+  umbrella header "Pods-LiFXSwiftKitiOS-umbrella.h"
+
+  export *
+  module * { export * }
+}
