@@ -442,7 +442,7 @@
 				B61542131D294E4100091E73 /* ToggleAll.swift */,
 				B61542141D294E4100091E73 /* ToggleLights.swift */,
 			);
-			name = AppleScriptCommands;
+			path = AppleScriptCommands;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
