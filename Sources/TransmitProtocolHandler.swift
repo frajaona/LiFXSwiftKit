@@ -10,17 +10,17 @@ import Foundation
 
 class TransmitProtocolHandler {
     
-    private var nextTransmitSequenceNumber = 0 as UInt8
+    fileprivate var nextTransmitSequenceNumber = 0 as UInt8
     
-    private var nextReceiveSequenceNumber = 0 as UInt8
+    fileprivate var nextReceiveSequenceNumber = 0 as UInt8
     
-    private var protocolLayer: Socket
+    fileprivate var protocolLayer: Socket
     
-    private let retransmissionBuffer: RetransmissionBuffer
+    fileprivate let retransmissionBuffer: RetransmissionBuffer
     
-    private let transmitQueue = Queue<LiFXMessage>()
+    fileprivate let transmitQueue = Queue<LiFXMessage>()
     
-    private let address: String
+    fileprivate let address: String
     
     init(socket: Socket, address: String) {
         protocolLayer = socket
@@ -34,12 +34,12 @@ class TransmitProtocolHandler {
         return sequenceNumber
     }
     
-    private func transmitMessage(message: LiFXMessage) {
+    fileprivate func transmitMessage(_ message: LiFXMessage) {
         retransmissionBuffer.addMessage(message)
         protocolLayer.sendMessage(message, address: address)
     }
     
-    func handleTransmitRequest(message: LiFXMessage) {
+    func handleTransmitRequest(_ message: LiFXMessage) {
         if retransmissionBuffer.windowRoom == 0 {
             // No space, window is full. The message waits in the queue
             transmitQueue.enQueue(message)
@@ -49,7 +49,7 @@ class TransmitProtocolHandler {
         }
     }
     
-    func handleReceivedAckNotification(ackSequenceNumber: UInt8) {
+    func handleReceivedAckNotification(_ ackSequenceNumber: UInt8) {
         retransmissionBuffer.handleReceivedAckNotification(ackSequenceNumber)
         
         let windowRoom = retransmissionBuffer.windowRoom

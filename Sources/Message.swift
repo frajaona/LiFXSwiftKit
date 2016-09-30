@@ -10,5 +10,5 @@ import Foundation
 
 protocol Message {
     
-    func getData() -> NSData
+    func getData() -> Data
 }

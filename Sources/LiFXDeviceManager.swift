@@ -10,7 +10,7 @@ import Foundation
 
 public protocol LiFXDeviceManagerObserver {
     var observerHashValue: String { get }
-    func onDeviceListChanged(newList: [LiFXDevice])
+    func onDeviceListChanged(_ newList: [LiFXDevice])
 }
 
 public class LiFXDeviceManager {
@@ -19,7 +19,7 @@ public class LiFXDeviceManager {
     
     public var devices = [String: LiFXDevice]()
     
-    private var session = LiFXSession()
+    fileprivate var session = LiFXSession()
     
     var broadcastAddress: String? {
         get {
@@ -30,19 +30,19 @@ public class LiFXDeviceManager {
         }
     }
     
-    private var deviceListObservable = [String: LiFXDeviceManagerObserver]()
+    fileprivate var deviceListObservable = [String: LiFXDeviceManagerObserver]()
     
     init() {
         session.delegate = self
     }
     
-    public func registerDeviceListObserver(observer: LiFXDeviceManagerObserver) {
+    public func registerDeviceListObserver(_ observer: LiFXDeviceManagerObserver) {
         if deviceListObservable[observer.observerHashValue] == nil {
             deviceListObservable[observer.observerHashValue] = observer
         }
     }
     
-    public func unregisterDeviceListObserver(observer: LiFXDeviceManagerObserver) {
+    public func unregisterDeviceListObserver(_ observer: LiFXDeviceManagerObserver) {
         deviceListObservable[observer.observerHashValue] = nil
     }
     
@@ -66,7 +66,7 @@ public class LiFXDeviceManager {
         }
     }
     
-    public func switchOn(deviceUid: String) {
+    public func switchOn(_ deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.switchOn()
@@ -74,7 +74,7 @@ public class LiFXDeviceManager {
         }
     }
     
-    public func switchOff(deviceUid: String) {
+    public func switchOff(_ deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.switchOff()
@@ -82,23 +82,23 @@ public class LiFXDeviceManager {
         }
     }
     
-    public func switchOnGroup(group: String) {
+    public func switchOnGroup(_ group: String) {
         for (_, device) in devices {
-            if let deviceGroup = device.group where deviceGroup.label == group {
+            if let deviceGroup = device.group , deviceGroup.label == group {
                 device.switchOn()
             }
         }
     }
     
-    public func switchOffGroup(group: String) {
+    public func switchOffGroup(_ group: String) {
         for (_, device) in devices {
-            if let deviceGroup = device.group where deviceGroup.label == group {
+            if let deviceGroup = device.group , deviceGroup.label == group {
                 device.switchOff()
             }
         }
     }
     
-    public func toggle(deviceUid: String) {
+    public func toggle(_ deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.toggle()
@@ -112,9 +112,9 @@ public class LiFXDeviceManager {
         }
     }
     
-    public func toggleGroup(group: String) {
+    public func toggleGroup(_ group: String) {
         for (_, device) in devices {
-            if let deviceGroup = device.group where deviceGroup.label == group {
+            if let deviceGroup = device.group , deviceGroup.label == group {
                 device.toggle()
             }
         }
@@ -126,7 +126,7 @@ public class LiFXDeviceManager {
         }
     }
     
-    func getPower(deviceUid: String) {
+    func getPower(_ deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.getPower()
@@ -134,13 +134,13 @@ public class LiFXDeviceManager {
         }
     }
     
-    public func setBrightness(brightness: Int) {
+    public func setBrightness(_ brightness: Int) {
         for (_, device) in devices {
             device.setBrightness(brightness)
         }
     }
     
-    public func setBrightness(deviceUid: String, brightness: Int) {
+    public func setBrightness(_ deviceUid: String, brightness: Int) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.setBrightness(brightness)
@@ -166,9 +166,9 @@ public class LiFXDeviceManager {
 
 
 extension LiFXDeviceManager: LiFXSessionDelegate {
-    func liFXSession(session: LiFXSession, didReceiveMessage message: LiFXMessage, fromAddress address: String) {
+    func liFXSession(_ session: LiFXSession, didReceiveMessage message: LiFXMessage, fromAddress address: String) {
         switch message.messageType {
-        case LiFXMessage.MessageType.DeviceStateService:
+        case LiFXMessage.MessageType.deviceStateService:
             if devices[address] == nil {
                 devices[address] = LiFXDevice(fromMessage: message, address: address, session: session)
                 print("Found new device with IP address: \(address)")

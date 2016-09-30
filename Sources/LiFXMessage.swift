@@ -11,9 +11,9 @@ import Foundation
 
 struct LiFXMessage: Message {
     
-    private static let headerSize = 36 // bytes
+    fileprivate static let headerSize = 36 // bytes
     
-    private static let noSource = (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0))
+    fileprivate static let noSource = (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0))
     
     static func getIntValue(fromData bytes: [UInt8]) -> Int {
         var value = 0
@@ -25,37 +25,37 @@ struct LiFXMessage: Message {
     }
     
     static func getStringValue(fromData bytes: [UInt8]) -> String? {
-        let data = NSData(bytes: bytes , length: bytes.count)
-        let size = bytes.indexOf(0) ?? bytes.count
-        return String(data: data.subdataWithRange(NSMakeRange(0, size)), encoding: NSUTF8StringEncoding)
+        let data = NSData(bytes: UnsafePointer<UInt8>(bytes) , length: bytes.count)
+        let size = bytes.index(of: 0) ?? bytes.count
+        return String(data: data.subdata(with: NSMakeRange(0, size)), encoding: String.Encoding.utf8)
     }
     
     enum MessageType: UInt16 {
-        case DeviceGetService = 2
-        case DeviceStateService = 3
-        case DeviceGetHostInfo = 12
-        case DeviceStateHostInfo = 13
+        case deviceGetService = 2
+        case deviceStateService = 3
+        case deviceGetHostInfo = 12
+        case deviceStateHostInfo = 13
         
-        case DeviceSetPower = 22
-        case DeviceGetLabel = 23
+        case deviceSetPower = 22
+        case deviceGetLabel = 23
         
-        case DeviceStateLabel = 25
+        case deviceStateLabel = 25
         
-        case Ack = 45
+        case ack = 45
         
-        case DeviceGetGroup = 51
-        case DeviceStateGroup = 53
+        case deviceGetGroup = 51
+        case deviceStateGroup = 53
         
-        case LightGet = 101
-        case LightSetColor = 102
+        case lightGet = 101
+        case lightSetColor = 102
         
-        case LightState = 107
+        case lightState = 107
         
-        case LightGetPower = 116
-        case LightSetPower = 117
-        case LightStatePower = 118
+        case lightGetPower = 116
+        case lightSetPower = 117
+        case lightStatePower = 118
         
-        case Unknown = 10000
+        case unknown = 10000
     }
     
     
@@ -68,26 +68,26 @@ struct LiFXMessage: Message {
         return result
     }
     
-    private let proto = 1024
-    private let addressable = 1
-    private let tagged: Int
-    private let origin = 0
-    private var source = 0 as UInt32
+    fileprivate let proto = 1024
+    fileprivate let addressable = 1
+    fileprivate let tagged: Int
+    fileprivate let origin = 0
+    fileprivate var source = 0 as UInt32
     /* frame address */
     let target: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)
-    private var reserved = [UInt8](count: 6, repeatedValue: 0)
-    private let res_required = 0
-    private let ack_required = 1
-    private var sequence: UInt8!
+    fileprivate var reserved = [UInt8](repeating: 0, count: 6)
+    fileprivate let res_required = 0
+    fileprivate let ack_required = 1
+    fileprivate var sequence: UInt8!
     /* protocol header */
-    private let type: UInt16!
+    fileprivate let type: UInt16!
     /* variable length payload follows */
     
     var messageType: MessageType {
         if let mType = MessageType.init(rawValue: type) {
             return mType
         }
-        return MessageType.Unknown
+        return MessageType.unknown
     }
     
     var targetMACAddress: String {
@@ -122,7 +122,7 @@ struct LiFXMessage: Message {
         payload = messagePayload
     }
     
-    init(fromData data: NSData) {
+    init(fromData data: Data) {
         let header = LiFXHeader(data: data)
         type = header.type
         target = header.target
@@ -131,14 +131,14 @@ struct LiFXMessage: Message {
         source = header.source
         let payloadSize = Int(header.size) - LiFXMessage.headerSize
         if payloadSize > 0 {
-            payload = [UInt8](count: payloadSize, repeatedValue: 0)
-            data.getBytes(&payload!, range: NSMakeRange(LiFXMessage.headerSize, payload!.count))
+            payload = [UInt8](repeating: 0, count: payloadSize)
+            (data as NSData).getBytes(&payload!, range: NSMakeRange(LiFXMessage.headerSize, payload!.count))
         } else {
             payload = nil
         }
     }
     
-    func getData() -> NSData {
+    func getData() -> Data {
         
         var byte64 = 0 as UInt64
         var byte16 = 0 as UInt16
@@ -153,16 +153,16 @@ struct LiFXMessage: Message {
         
         // Size
         byte16 = size
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         // Origin - tagged - addressable - protocol
         let shiftFlag = (origin << 14) + (tagged << 13) + (addressable << 12)
         byte16 = UInt16(proto | shiftFlag).littleEndian
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         // Source
         byte32 = source.littleEndian
-        data.appendBytes(&byte32, length: 4)
+        data.append(&byte32, length: 4)
         
         // ****** End Frame ******
         
@@ -173,33 +173,33 @@ struct LiFXMessage: Message {
         // Target
         //byte64 = target.littleEndian
         byte8 = target.0
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.1
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.2
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.3
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.4
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.5
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.6
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         byte8 = target.7
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         
         // Reserved
         var reservedByte = reserved
-        data.appendBytes(&reservedByte, length: 6)
+        data.append(&reservedByte, length: 6)
         
         // Reserved = 0 - ack_required - res_required
         byte8 = UInt8((ack_required << 1) + (res_required))
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         
         // Sequence
         byte8 = sequence
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         
         // ****** End Frame address ******
         
@@ -209,24 +209,24 @@ struct LiFXMessage: Message {
         
         // Reserved
         byte64 = 0 as UInt64
-        data.appendBytes(&byte64, length: 8)
+        data.append(&byte64, length: 8)
         
         // Type
         byte16 = type.littleEndian
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         // Reserved
         byte16 = 0 as UInt16
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         //-----------------------------------------------------------------------------
         
         // ****** Payload ******
         if var p = payload {
-            data.appendBytes(&p, length: p.count)
+            data.append(&p, length: p.count)
         }
         
-        return data
+        return data as Data
     }
     
     func getSequenceNumber() -> UInt8 {

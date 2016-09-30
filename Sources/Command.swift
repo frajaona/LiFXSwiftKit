@@ -16,9 +16,9 @@ protocol Command {
     
     func getMessage() -> LiFXMessage
     func getProtocolHandler() -> TransmitProtocolHandler
-    func onNewMessage(message: LiFXMessage)
+    func onNewMessage(_ message: LiFXMessage)
     func isComplete() -> Bool
-    func initCommand(transmitProtocolHandler: TransmitProtocolHandler)
+    func initCommand(_ transmitProtocolHandler: TransmitProtocolHandler)
     
 }
 
@@ -35,7 +35,7 @@ extension Command {
         return true
     }
     
-    func onNewMessage(message: LiFXMessage) {
+    func onNewMessage(_ message: LiFXMessage) {
         
     }
     

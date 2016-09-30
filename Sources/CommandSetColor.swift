@@ -13,71 +13,71 @@ final class CommandSetColor: Command {
     var sequenceNumber: UInt8 = 0
     var sourceNumber: UInt32 = 0
     
-    private var hue = 0
-    private var saturation = 0
-    private var brightness = 0
-    private var kelvin = 0
+    fileprivate var hue = 0
+    fileprivate var saturation = 0
+    fileprivate var brightness = 0
+    fileprivate var kelvin = 0
     
     var setHue = false
     var setSaturation = false
     var setBrightness = false
     var setKelvin = false
     
-    private var transmitProtocolHandler: TransmitProtocolHandler!
+    fileprivate var transmitProtocolHandler: TransmitProtocolHandler!
     
-    private var message: LiFXMessage!
+    fileprivate var message: LiFXMessage!
     
-    private var completed = false
+    fileprivate var completed = false
     
-    func initCommand(transmitProtocolHandler: TransmitProtocolHandler) {
+    func initCommand(_ transmitProtocolHandler: TransmitProtocolHandler) {
         self.transmitProtocolHandler = transmitProtocolHandler
-        message = LiFXMessage(messageType: LiFXMessage.MessageType.LightGet, sequenceNumber: sequenceNumber, sourceNumber: sourceNumber,targetAddress: (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)), messagePayload: nil)
+        message = LiFXMessage(messageType: LiFXMessage.MessageType.lightGet, sequenceNumber: sequenceNumber, sourceNumber: sourceNumber,targetAddress: (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)), messagePayload: nil)
     }
     
-    func setHue(hue: Int) -> CommandSetColor {
+    func setHue(_ hue: Int) -> CommandSetColor {
         setHue = true
         self.hue = hue
         return self
     }
     
-    func setSaturation(saturation: Int) -> CommandSetColor {
+    func setSaturation(_ saturation: Int) -> CommandSetColor {
         setSaturation = true
         self.saturation = saturation
         return self
     }
     
-    func setBrightness(brightness: Int) -> CommandSetColor {
+    func setBrightness(_ brightness: Int) -> CommandSetColor {
         setBrightness = true
         self.brightness = brightness
         return self
     }
     
-    func setKelvin(kelvin: Int) -> CommandSetColor {
+    func setKelvin(_ kelvin: Int) -> CommandSetColor {
         setKelvin = true
         self.kelvin = kelvin
         return self
     }
     
-    private func getPayload() -> [UInt8] {
+    fileprivate func getPayload() -> [UInt8] {
         let data = NSMutableData()
         var byte8 = 0
-        data.appendBytes(&byte8, length: 1)
+        data.append(&byte8, length: 1)
         var byte16 = hue.littleEndian
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         byte16 = saturation.littleEndian
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         byte16 = brightness.littleEndian
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         byte16 = kelvin.littleEndian
-        data.appendBytes(&byte16, length: 2)
+        data.append(&byte16, length: 2)
         
         var byte32 = 0
-        data.appendBytes(&byte32, length: 4)
+        data.append(&byte32, length: 4)
         
-        var payload = [UInt8](count: data.length, repeatedValue: 0)
+        var payload = [UInt8](repeating: 0, count: data.length)
         data.getBytes(&payload, length: data.length)
         return payload
     }
@@ -90,9 +90,9 @@ final class CommandSetColor: Command {
         return transmitProtocolHandler
     }
     
-    func onNewMessage(message: LiFXMessage) {
+    func onNewMessage(_ message: LiFXMessage) {
         switch message.messageType {
-        case LiFXMessage.MessageType.LightState:
+        case LiFXMessage.MessageType.lightState:
             if message.getSequenceNumber() == sequenceNumber {
                 let info = LiFXLightInfo(fromData: message.payload!)
                 if !setHue {
@@ -107,7 +107,7 @@ final class CommandSetColor: Command {
                 if !setKelvin {
                     kelvin = info.kelvin
                 }
-                self.message = LiFXMessage(messageType: LiFXMessage.MessageType.LightSetColor, sequenceNumber:  transmitProtocolHandler.getNextTransmitSequenceNumber(), sourceNumber: sourceNumber,targetAddress: (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)), messagePayload: getPayload())
+                self.message = LiFXMessage(messageType: LiFXMessage.MessageType.lightSetColor, sequenceNumber:  transmitProtocolHandler.getNextTransmitSequenceNumber(), sourceNumber: sourceNumber,targetAddress: (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)), messagePayload: getPayload())
                 
                 execute()
                 completed = true

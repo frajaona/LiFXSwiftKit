@@ -13,5 +13,5 @@ protocol Socket {
     func openConnection() -> Bool
     func closeConnection()
     func isConnected() -> Bool
-    func sendMessage<T: Message>(message: T, address: String)
+    func sendMessage<T: Message>(_ message: T, address: String)
 }

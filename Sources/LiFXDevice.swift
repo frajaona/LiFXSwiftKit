@@ -14,18 +14,18 @@ public class LiFXDevice {
     static let minPowerLevel = 0
 
     enum Service: Int {
-        case UDP = 1
+        case udp = 1
     }
     
-    private let sourceNumber = 12345 as UInt32
+    fileprivate let sourceNumber = 12345 as UInt32
     
-    private var generatedSequence: UInt8 = 0
+    fileprivate var generatedSequence: UInt8 = 0
     
-    private let transmitProtocolHandler: TransmitProtocolHandler
+    fileprivate let transmitProtocolHandler: TransmitProtocolHandler
     
-    private let commandQueue = Queue<Command>()
+    fileprivate let commandQueue = Queue<Command>()
     
-    private var currentCommand: Command?
+    fileprivate var currentCommand: Command?
     
     let port: Int
     let service: UInt8
@@ -94,15 +94,15 @@ public class LiFXDevice {
         execute(command)
     }
     
-    func setBrightness(brightness: Int) {
+    func setBrightness(_ brightness: Int) {
         let command = CommandSetColor(transmitProtocolHandler: transmitProtocolHandler, sourceNumber: sourceNumber)
         
-        command.setBrightness(brightness)
+        _ = command.setBrightness(brightness)
         execute(command)
     }
     
-    private func execute(command: Command) {
-        if let c = currentCommand where !c.isComplete() {
+    fileprivate func execute(_ command: Command) {
+        if let c = currentCommand , !c.isComplete() {
             commandQueue.enQueue(c)
         } else {
             currentCommand = command
@@ -110,22 +110,22 @@ public class LiFXDevice {
         }
     }
     
-    func onNewMessage(message: LiFXMessage) {
+    func onNewMessage(_ message: LiFXMessage) {
         switch message.messageType {
-        case LiFXMessage.MessageType.LightStatePower:
+        case LiFXMessage.MessageType.lightStatePower:
             powerLevel = LiFXMessage.getIntValue(fromData: message.payload!)
             
-        case LiFXMessage.MessageType.DeviceStateGroup:
+        case LiFXMessage.MessageType.deviceStateGroup:
             let g = LiFXGroup(fromData: message.payload!)
             if g.valid {
                 group = g
             }
             
-        case LiFXMessage.MessageType.DeviceStateLabel:
+        case LiFXMessage.MessageType.deviceStateLabel:
             label = LiFXMessage.getStringValue(fromData: message.payload!)
             print("Device Label is \(label)")
             
-        case LiFXMessage.MessageType.LightState:
+        case LiFXMessage.MessageType.lightState:
             let info = LiFXLightInfo(fromData: message.payload!)
             label = info.label
             powerLevel = info.power
@@ -134,7 +134,7 @@ public class LiFXDevice {
             brightness = info.brightness
             kelvin = info.kelvin
             
-        case LiFXMessage.MessageType.Ack:
+        case LiFXMessage.MessageType.ack:
             if sourceNumber == message.getSourceNumber() {
                 transmitProtocolHandler.handleReceivedAckNotification(message.getSequenceNumber())
             }
@@ -142,7 +142,7 @@ public class LiFXDevice {
         default:
             break
         }
-        if let pendingCommand = currentCommand where pendingCommand.sourceNumber == message.getSourceNumber() {
+        if let pendingCommand = currentCommand , pendingCommand.sourceNumber == message.getSourceNumber() {
             currentCommand?.onNewMessage(message)
         }
         if let command = currentCommand {

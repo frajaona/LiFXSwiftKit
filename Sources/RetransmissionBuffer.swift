@@ -10,21 +10,22 @@ import Foundation
 
 class RetransmissionBuffer {
     
-    private let windowSize = 1
+    fileprivate let windowSize = 1
     
-    private let timeout = 1000 as Double // in ms
+    fileprivate let timeout = 1000 as Double // in ms
     
-    private let address: String
+    fileprivate let address: String
     
-    private var lastTransmittedSequenceNumber = 0 as UInt8
-    private var lastAcknowledgedSequenceNumber = 0 as UInt8
+    fileprivate var lastTransmittedSequenceNumber = 0 as UInt8
+    fileprivate var lastAcknowledgedSequenceNumber = 0 as UInt8
     
-    private var protocolLayer: Socket
+    fileprivate var protocolLayer: Socket
     
-    private var pendingMessages = [UInt8: LiFXMessage]()
+    fileprivate var pendingMessages = [UInt8: LiFXMessage]()
     
     //private var pendingMessage: [LiFXMessage?]
-    private var timerBlock: dispatch_block_t?
+    //fileprivate var timerBlock: (()->())?
+    fileprivate var timerWorkItem: DispatchWorkItem?
     
     var windowRoom: Int {
         get {
@@ -38,24 +39,24 @@ class RetransmissionBuffer {
         self.address = address
     }
     
-    private func restartAwaitAckTimer() {
+    fileprivate func restartAwaitAckTimer() {
         stopAwaitAckTimer()
-        let block = dispatch_block_create(DISPATCH_BLOCK_INHERIT_QOS_CLASS) {
+        let workItem = DispatchWorkItem {
             [unowned self] in
             self.handleAwaitAckTimeout()
         }
-        timerBlock = block
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(timeout * Double(NSEC_PER_MSEC))), dispatch_get_main_queue(), block)
+        timerWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(timeout * Double(NSEC_PER_MSEC))) / Double(NSEC_PER_SEC), execute: workItem)
     }
     
-    private func stopAwaitAckTimer() {
-        if let block = timerBlock {
-            dispatch_block_cancel(block)
-            timerBlock = nil
+    fileprivate func stopAwaitAckTimer() {
+        if let workItem = timerWorkItem {
+            workItem.cancel()
+            timerWorkItem = nil
         }
     }
     
-    func addMessage(message: LiFXMessage) {
+    func addMessage(_ message: LiFXMessage) {
         lastTransmittedSequenceNumber = message.getSequenceNumber()
         
         pendingMessages[lastTransmittedSequenceNumber] = message
@@ -63,7 +64,7 @@ class RetransmissionBuffer {
         restartAwaitAckTimer()
     }
     
-    func handleReceivedAckNotification(newAckSequenceNumber: UInt8) {
+    func handleReceivedAckNotification(_ newAckSequenceNumber: UInt8) {
         var index: UInt8 = lastAcknowledgedSequenceNumber
         while index != newAckSequenceNumber {
             pendingMessages[index] = nil
@@ -76,7 +77,7 @@ class RetransmissionBuffer {
         }
     }
     
-    private func handleAwaitAckTimeout() {
+    fileprivate func handleAwaitAckTimeout() {
         var i: UInt8 = lastAcknowledgedSequenceNumber &+ 1
         while i != lastTransmittedSequenceNumber {
             if let message = pendingMessages[i] {

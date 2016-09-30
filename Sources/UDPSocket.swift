@@ -11,19 +11,19 @@ import CocoaAsyncSocket
 
 struct UDPSocket<T: Message>: Socket {
     
-    private let delegate: GCDAsyncUdpSocketDelegate
+    fileprivate let delegate: GCDAsyncUdpSocketDelegate
     
-    private let socket: GCDAsyncUdpSocket
+    fileprivate let socket: GCDAsyncUdpSocket
     
-    private let port: UInt16
+    fileprivate let port: UInt16
     
-    private let enableBroadcast: Bool
+    fileprivate let enableBroadcast: Bool
     
     init(destPort: UInt16, shouldBroadcast: Bool, socketDelegate: GCDAsyncUdpSocketDelegate) {
         delegate = socketDelegate
         port = destPort
         enableBroadcast = shouldBroadcast
-        socket = GCDAsyncUdpSocket(delegate: delegate, delegateQueue: dispatch_get_main_queue())
+        socket = GCDAsyncUdpSocket(delegate: delegate, delegateQueue: DispatchQueue.main)
     }
     
     func openConnection() -> Bool {
@@ -31,7 +31,7 @@ struct UDPSocket<T: Message>: Socket {
         socket.setIPv6Enabled(false)
         
         do {
-            try socket.bindToPort(port)
+            try socket.bind(toPort: port)
         } catch let error as NSError {
             print("Cannot bind socket to port: \(error.description)")
             closeConnection()
@@ -58,10 +58,10 @@ struct UDPSocket<T: Message>: Socket {
         return true
     }
     
-    func sendMessage<T : Message>(message: T, address: String) {
+    func sendMessage<T : Message>(_ message: T, address: String) {
         let strData = message.getData()
-        print("\n\nsending(\(strData.length)): \(strData.description)\n\n")
-        socket.sendData(message.getData(), toHost: address, port: port, withTimeout: -1, tag: 0)
+        print("\n\nsending(\(strData.count)): \(strData.description)\n\n")
+        socket.send(message.getData() as Data!, toHost: address, port: port, withTimeout: -1, tag: 0)
     }
     
     func closeConnection() {

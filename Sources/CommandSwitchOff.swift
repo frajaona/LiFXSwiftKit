@@ -13,13 +13,13 @@ final class CommandSwitchOff: Command {
     var sequenceNumber: UInt8 = 0
     var sourceNumber: UInt32 = 0
     
-    private var transmitProtocolHandler: TransmitProtocolHandler!
+    fileprivate var transmitProtocolHandler: TransmitProtocolHandler!
     
-    private var message: LiFXMessage!
+    fileprivate var message: LiFXMessage!
     
-    func initCommand(transmitProtocolHandler: TransmitProtocolHandler) {
+    func initCommand(_ transmitProtocolHandler: TransmitProtocolHandler) {
         self.transmitProtocolHandler = transmitProtocolHandler
-        message = LiFXMessage(messageType: LiFXMessage.MessageType.LightSetPower, sequenceNumber: sequenceNumber, sourceNumber: sourceNumber, targetAddress: (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)), messagePayload: [UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)])
+        message = LiFXMessage(messageType: LiFXMessage.MessageType.lightSetPower, sequenceNumber: sequenceNumber, sourceNumber: sourceNumber, targetAddress: (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)), messagePayload: [UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0)])
     }
     
     func getMessage() -> LiFXMessage {

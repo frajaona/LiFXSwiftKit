@@ -10,14 +10,14 @@ import Foundation
 import CocoaAsyncSocket
 
 protocol LiFXSessionDelegate {
-    func liFXSession(session: LiFXSession, didReceiveMessage message: LiFXMessage, fromAddress address: String)
+    func liFXSession(_ session: LiFXSession, didReceiveMessage message: LiFXMessage, fromAddress address: String)
 }
 
 class LiFXSession: Session {
     
     static let DefaultBroadcastAddress: String = "192.168.240.255"
     
-    private static let UDPPort: UInt16 = 56700
+    fileprivate static let UDPPort: UInt16 = 56700
     
     var udpSocket: UDPSocket<LiFXMessage>?
     
@@ -44,7 +44,7 @@ class LiFXSession: Session {
         closeConnection()
     }
     
-    private func openConnection(broadcastAddress: String) {
+    fileprivate func openConnection(_ broadcastAddress: String) {
         let socket = UDPSocket<LiFXMessage>(destPort: LiFXSession.UDPPort, shouldBroadcast: true, socketDelegate: self)
         
         udpSocket = socket
@@ -52,11 +52,11 @@ class LiFXSession: Session {
         if !socket.openConnection() {
             closeConnection()
         } else {
-            socket.sendMessage(LiFXMessage(messageType: LiFXMessage.MessageType.DeviceGetService), address: broadcastAddress)
+            socket.sendMessage(LiFXMessage(messageType: LiFXMessage.MessageType.deviceGetService), address: broadcastAddress)
         }
     }
     
-    private func closeConnection() {
+    fileprivate func closeConnection() {
         udpSocket?.closeConnection()
         udpSocket = nil
     }
@@ -65,7 +65,7 @@ class LiFXSession: Session {
         return udpSocket != nil
     }
     
-    private func handleMessage(message: LiFXMessage, address: String) {
+    fileprivate func handleMessage(_ message: LiFXMessage, address: String) {
         print("Handle message: \(message)")
         delegate?.liFXSession(self, didReceiveMessage: message ,fromAddress: address)
     }
@@ -74,22 +74,22 @@ class LiFXSession: Session {
 
 extension LiFXSession: GCDAsyncUdpSocketDelegate {
     
-    @objc func udpSocket(sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
+    @objc func udpSocket(_ sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
         print("socked did send data with tag \(tag)")
     }
     
-    @objc func udpSocket(sock: GCDAsyncUdpSocket!, didNotSendDataWithTag tag: Int, dueToError error: NSError!) {
+    @objc func udpSocket(_ sock: GCDAsyncUdpSocket!, didNotSendDataWithTag tag: Int, dueToError error: Error!) {
         print("socked did not send data with tag \(tag)")
     }
     
-    @objc func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
+    @objc func udpSocketDidClose(_ sock: GCDAsyncUdpSocket!, withError error: Error!) {
         print("Socket closed: \(error.localizedDescription)")
     }
     
-    @objc func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
-        print("\nReceive data from isIPv4=\(GCDAsyncUdpSocket.isIPv4Address(address)) address: \(GCDAsyncUdpSocket.hostFromAddress(address))")
+    @objc func udpSocket(_ sock: GCDAsyncUdpSocket!, didReceive data: Data!, fromAddress address: Data!, withFilterContext filterContext: Any!) {
+        print("\nReceive data from isIPv4=\(GCDAsyncUdpSocket.isIPv4Address(address)) address: \(GCDAsyncUdpSocket.host(fromAddress: address))")
         //print(data.description)
         let message = LiFXMessage(fromData: data)
-        handleMessage(message, address: GCDAsyncUdpSocket.hostFromAddress(address))
+        handleMessage(message, address: GCDAsyncUdpSocket.host(fromAddress: address))
     }
 }

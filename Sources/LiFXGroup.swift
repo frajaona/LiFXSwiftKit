@@ -10,9 +10,9 @@ import Foundation
 
 struct LiFXGroup {
     
-    private static let groupByteCount = 16
-    private static let labelByteCount = 32
-    private let dataSize = LiFXGroup.groupByteCount + LiFXGroup.labelByteCount
+    fileprivate static let groupByteCount = 16
+    fileprivate static let labelByteCount = 32
+    fileprivate let dataSize = LiFXGroup.groupByteCount + LiFXGroup.labelByteCount
     
     let group: [UInt8]
     let label: String
@@ -23,14 +23,14 @@ struct LiFXGroup {
         var label: String? = nil
         var group: [UInt8]? = nil
         if bytes.count >= dataSize {
-            group = [UInt8](count: LiFXGroup.groupByteCount, repeatedValue: 0)
+            group = [UInt8](repeating: 0, count: LiFXGroup.groupByteCount)
             for i in 0..<LiFXGroup.groupByteCount {
                 group![i] = bytes[i]
             }
             let labelArray: [UInt8] = Array(bytes[LiFXGroup.groupByteCount...LiFXGroup.groupByteCount + LiFXGroup.labelByteCount])
             label = LiFXMessage.getStringValue(fromData: labelArray)
-            if let index = label?.characters.indexOf("\0") {
-                label = label?.substringToIndex(index)
+            if let index = label?.characters.index(of: "\0") {
+                label = label?.substring(to: index)
             }
             valid = label != nil
         }

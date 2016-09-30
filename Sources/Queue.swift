@@ -9,9 +9,9 @@
 import Foundation
 
 class Queue<T> {
-    private var items = [T]()
+    fileprivate var items = [T]()
     
-    func enQueue(item: T) {
+    func enQueue(_ item: T) {
         items.append(item)
     }
     
