@@ -29,7 +29,7 @@ public class LiFXDeviceManager {
     
     fileprivate var session = LiFXSession()
     
-    var broadcastAddress: String? {
+    public var broadcastAddress: String? {
         get {
             return session.broadcastAddress ?? LiFXSession.DefaultBroadcastAddress
         }
@@ -58,7 +58,14 @@ public class LiFXDeviceManager {
         if session.isConnected() {
             notifyDeviceListObservers()
         } else {
-            session.start()
+            // Use default discovery interval
+            session.start(withDiscoveryInterval: -1)
+        }
+    }
+
+    public func refreshDeviceList() {
+        if session.isConnected() {
+            session.discoverDevices()
         }
     }
     
@@ -181,8 +188,8 @@ extension LiFXDeviceManager: LiFXSessionDelegate {
                 devices[address] = LiFXDevice(fromMessage: message, address: address, session: session)
                 print("Found new device with IP address: \(address)")
                 notifyDeviceListObservers()
-                devices[address]?.getGroup()
-                devices[address]?.getInfo()
+                devices[address]!.getGroup()
+                devices[address]!.getInfo()
             }
             
         default:

@@ -24,6 +24,7 @@ protocol LiFXSessionDelegate {
 class LiFXSession: Session {
     
     static let DefaultBroadcastAddress: String = "192.168.240.255"
+    fileprivate static let DefaultDiscoveryInterval = DispatchTimeInterval.seconds(60 * 5)
     
     fileprivate static let UDPPort: UInt16 = 56700
     
@@ -40,33 +41,76 @@ class LiFXSession: Session {
         }
     }
     
-    func start() {
+    fileprivate var discoveryWorkItem: DispatchWorkItem?
+
+    fileprivate var discoveryInterval: DispatchTimeInterval?
+    
+    /**
+     Open connection and perform discovery repeatedly according to the given time interval.
+     
+        - parameter seconds: time interval in second between each discovery request. Passing negative value use the default time interval
+     
+     Use LiFXSession.start() if you don't want repeated discovery
+     
+     */
+    func start(withDiscoveryInterval seconds: Int) {
         if !isConnected() {
-            openConnection(broadcastAddress ?? LiFXSession.DefaultBroadcastAddress)
+            broadcastAddress = broadcastAddress ?? LiFXSession.DefaultBroadcastAddress
+            openConnection()
+            discoveryInterval = seconds < 0 ? LiFXSession.DefaultDiscoveryInterval : DispatchTimeInterval.seconds(seconds)
+            let workItem = DispatchWorkItem {
+                [unowned self] in
+                self.discoverDevices()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.discoveryInterval!, execute: self.discoveryWorkItem!)
+            }
+            
+            discoveryWorkItem = workItem
+            workItem.perform()
         } else {
             print("Explorer already started")
         }
     }
     
+    /**
+        Open connection and only perform 1 discovery.
+     
+        Further discovery can be performed by calling LiFXSession.discoverDevices()
+     */
+    func start() {
+        if !isConnected() {
+            broadcastAddress = broadcastAddress ?? LiFXSession.DefaultBroadcastAddress
+            openConnection()
+            discoverDevices()
+        } else {
+            print("Explorer already started")
+        }
+    }
+
+    
     func stop() {
+        stopDiscovery()
         closeConnection()
     }
     
-    fileprivate func openConnection(_ broadcastAddress: String) {
+    fileprivate func openConnection() {
         let socket = UDPSocket<LiFXMessage>(destPort: LiFXSession.UDPPort, shouldBroadcast: true, socketDelegate: self)
         
         udpSocket = socket
         
         if !socket.openConnection() {
             closeConnection()
-        } else {
-            socket.sendMessage(LiFXMessage(messageType: LiFXMessage.MessageType.deviceGetService), address: broadcastAddress)
         }
     }
     
     fileprivate func closeConnection() {
         udpSocket?.closeConnection()
         udpSocket = nil
+    }
+    
+    fileprivate func stopDiscovery() {
+        discoveryWorkItem?.cancel()
+        discoveryWorkItem = nil
+        discoveryInterval = nil
     }
     
     func isConnected() -> Bool {
@@ -76,6 +120,10 @@ class LiFXSession: Session {
     fileprivate func handleMessage(_ message: LiFXMessage, address: String) {
         print("Handle message: \(message)")
         delegate?.liFXSession(self, didReceiveMessage: message ,fromAddress: address)
+    }
+    
+    func discoverDevices() {
+        udpSocket?.sendMessage(LiFXMessage(messageType: LiFXMessage.MessageType.deviceGetService), address: broadcastAddress!)
     }
     
 }
