@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LiFXSwiftKit"
-  s.version      = "0.1.0"
+  s.version      = "0.3.0"
   s.summary      = "Swift library used to control LiFX bulbs using Lan Protocol. Available for iOS, tvOS and macOS"
 
   # This description is used to generate tags and improve search results.
@@ -25,11 +25,8 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  A longer description of HomeBridgeProtoBuf in Markdown format.
+  Swift library used to control LiFX bulbs using Lan Protocol. Available for iOS, tvOS and macOS
   * Think: Why did you write this? What is the focus? What does it do?
-  * CocoaPods will be using this to generate tags, and improve search results.
-  * Try to keep it short, snappy and to the point.
-  * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
 
   s.homepage     = "https://git.groriri.me/frajaona/LiFXSwiftKit"
@@ -58,36 +55,11 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
     LICENSE
 }
 
-
-  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the authors of the library, with email addresses. Email addresses
-  #  of the authors are extracted from the SCM log. E.g. $ git log. CocoaPods also
-  #  accepts just a name if you'd rather not provide an email address.
-  #
-  #  Specify a social_media_url where others can refer to, for example a twitter
-  #  profile URL.
-  #
-
   s.author             = { "Fred Rajaona" => "frajaona@gmail.com" }
-  # Or just: s.author    = "Fred Rajaona"
-  # s.authors            = { "Fred Rajaona" => "frajaona@gmail.com" }
-  # s.social_media_url   = "http://twitter.com/Fred Rajaona"
-
-  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If this Pod runs only on iOS or OS X, then specify the platform and
-  #  the deployment target. You can optionally include the target after the platform.
-  #
-
-  # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
-  #s.platform     = :osx, "10.10"
 
   #  When using multiple platforms
   s.ios.deployment_target = "9.0"
   s.osx.deployment_target = "10.10"
-  # s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "9.0"
 
 
@@ -137,11 +109,6 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
   #  the lib prefix of their name.
   #
 
-  # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
   s.framework  = "Foundation"
 
 
