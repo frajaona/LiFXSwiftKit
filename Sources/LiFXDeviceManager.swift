@@ -26,8 +26,12 @@ public class LiFXDeviceManager {
     public static let sharedInstance = LiFXDeviceManager()
     
     public var devices = [String: LiFXDevice]()
-    
-    fileprivate var session = LiFXSession()
+
+#if os(OSX)
+    fileprivate var session = LiFXSession(socket: LiFXSocksSocket())
+#else
+    fileprivate var session = LiFXSession(socket: LiFXCASSocket())
+#endif
     
     public var broadcastAddress: String? {
         get {

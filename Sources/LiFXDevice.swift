@@ -64,7 +64,7 @@ public class LiFXDevice {
             value += Int(payload[index]) << ((index - 1) * 8)
         }
         port = value
-        transmitProtocolHandler = TransmitProtocolHandler(socket: session.udpSocket!, address: self.address)
+        transmitProtocolHandler = TransmitProtocolHandler(socket: session.udpSocket.udpSocket!, address: self.address)
     }
     
     func switchOn() {

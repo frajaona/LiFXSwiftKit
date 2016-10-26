@@ -17,7 +17,7 @@
 import Foundation
 import CocoaAsyncSocket
 
-struct UDPSocket<T: Message>: Socket {
+struct UdpCASSocket<T: Message>: Socket {
     
     fileprivate let delegate: GCDAsyncUdpSocketDelegate
     

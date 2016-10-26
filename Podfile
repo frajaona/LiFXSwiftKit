@@ -1,8 +1,14 @@
+source 'https://git.groriri.me/frajaona/privatepods.git'
+source 'https://github.com/CocoaPods/Specs.git'
 # Uncomment this line to define a global platform for your project
 # platform :ios, '9.0'
 
-def pods()
-	pod 'CocoaAsyncSocket', '~> 7.4.3'
+def cas_pods()
+  pod 'CocoaAsyncSocket', '~> 7.5.0'
+end
+
+def socks_pods()
+  pod 'socks', '~> 1.0.3'
 end
 
 target 'LiFXSwiftKitiOS' do
@@ -10,7 +16,7 @@ target 'LiFXSwiftKitiOS' do
   use_frameworks!
 
   # Pods for LiFXSwiftKitiOS
-  pods()
+  cas_pods()
 
   target 'LiFXSwiftKitiOSTests' do
     inherit! :search_paths
@@ -24,7 +30,7 @@ target 'LiFXSwiftKitMacOS' do
   use_frameworks!
 
   # Pods for LiFXSwiftKitMacOS
-  pods()
+  socks_pods()
 
   target 'LiFXSwiftKitMacOSTests' do
     inherit! :search_paths
@@ -38,7 +44,7 @@ target 'LiFXSwiftKitTVOS' do
   use_frameworks!
 
   # Pods for LiFXSwiftKitTVOS
-  pods()
+  cas_pods()
 
   target 'LiFXSwiftKitTVOSTests' do
     inherit! :search_paths

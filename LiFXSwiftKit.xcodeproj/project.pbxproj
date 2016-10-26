@@ -89,14 +89,20 @@
 		B61542681D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542151D294E4100091E73 /* TransmitProtocolHandler.swift */; };
 		B61542691D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542151D294E4100091E73 /* TransmitProtocolHandler.swift */; };
 		B615426A1D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542151D294E4100091E73 /* TransmitProtocolHandler.swift */; };
-		B615426B1D294E4100091E73 /* UDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542161D294E4100091E73 /* UDPSocket.swift */; };
-		B615426C1D294E4100091E73 /* UDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542161D294E4100091E73 /* UDPSocket.swift */; };
-		B615426D1D294E4100091E73 /* UDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542161D294E4100091E73 /* UDPSocket.swift */; };
+		B615426B1D294E4100091E73 /* UdpCASSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542161D294E4100091E73 /* UdpCASSocket.swift */; };
+		B615426D1D294E4100091E73 /* UdpCASSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542161D294E4100091E73 /* UdpCASSocket.swift */; };
 		B61542711D29845500091E73 /* LiFXHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542701D29845500091E73 /* LiFXHeader.swift */; };
 		B61542721D29845500091E73 /* LiFXHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542701D29845500091E73 /* LiFXHeader.swift */; };
 		B61542731D29845500091E73 /* LiFXHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542701D29845500091E73 /* LiFXHeader.swift */; };
 		C9446346EBDEED5C07F8577A /* Pods_LiFXSwiftKitMacOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC72CAD869FBF113564DD43 /* Pods_LiFXSwiftKitMacOSTests.framework */; };
 		F0C56F9529382397599724FF /* Pods_LiFXSwiftKitMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375658B873248BCE7A7B9844 /* Pods_LiFXSwiftKitMacOS.framework */; };
+		FC4256341DBCFBFA002FF127 /* LiFXSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */; };
+		FC4256351DBCFBFA002FF127 /* LiFXSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */; };
+		FC4256361DBCFBFA002FF127 /* LiFXSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */; };
+		FC42563A1DBCFD52002FF127 /* LiFXCASSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */; };
+		FC42563C1DBCFD52002FF127 /* LiFXCASSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */; };
+		FC42563E1DBD0259002FF127 /* UdpSocksSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42563D1DBD0259002FF127 /* UdpSocksSocket.swift */; };
+		FC4256401DBD2952002FF127 /* LiFXSocksSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42563F1DBD2952002FF127 /* LiFXSocksSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,11 +190,15 @@
 		B61542131D294E4100091E73 /* ToggleAll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleAll.swift; sourceTree = "<group>"; };
 		B61542141D294E4100091E73 /* ToggleLights.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleLights.swift; sourceTree = "<group>"; };
 		B61542151D294E4100091E73 /* TransmitProtocolHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitProtocolHandler.swift; sourceTree = "<group>"; };
-		B61542161D294E4100091E73 /* UDPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPSocket.swift; sourceTree = "<group>"; };
+		B61542161D294E4100091E73 /* UdpCASSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdpCASSocket.swift; sourceTree = "<group>"; };
 		B61542701D29845500091E73 /* LiFXHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXHeader.swift; sourceTree = "<group>"; };
 		B6C648F95C19B53B9EC88513 /* Pods-LiFXSwiftKitiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFXSwiftKitiOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFXSwiftKitiOSTests/Pods-LiFXSwiftKitiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		E61DE280830370982D739486 /* Pods-LiFXSwiftKitTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFXSwiftKitTVOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFXSwiftKitTVOSTests/Pods-LiFXSwiftKitTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6C5E420FD664E2F98F83D97 /* Pods-LiFXSwiftKitiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFXSwiftKitiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFXSwiftKitiOS/Pods-LiFXSwiftKitiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXSocket.swift; sourceTree = "<group>"; };
+		FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXCASSocket.swift; sourceTree = "<group>"; };
+		FC42563D1DBD0259002FF127 /* UdpSocksSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdpSocksSocket.swift; sourceTree = "<group>"; };
+		FC42563F1DBD2952002FF127 /* LiFXSocksSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXSocksSocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +397,7 @@
 		B61541F41D294C9000091E73 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
+				FC4256321DBCFBDB002FF127 /* Socket */,
 				B61542081D294E4100091E73 /* LiFXMessage.swift */,
 				B61542091D294E4100091E73 /* LiFXSession.swift */,
 				B61542701D29845500091E73 /* LiFXHeader.swift */,
@@ -401,7 +412,6 @@
 				B615420A1D294E4100091E73 /* Message.swift */,
 				B61542111D294E4100091E73 /* Session.swift */,
 				B61542121D294E4100091E73 /* Socket.swift */,
-				B61542161D294E4100091E73 /* UDPSocket.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -443,6 +453,34 @@
 				B61542141D294E4100091E73 /* ToggleLights.swift */,
 			);
 			path = AppleScriptCommands;
+			sourceTree = "<group>";
+		};
+		FC4256321DBCFBDB002FF127 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				FC4256381DBCFC8A002FF127 /* Socks */,
+				FC4256371DBCFC78002FF127 /* CocoaAsyncSocket */,
+				FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */,
+			);
+			name = Socket;
+			sourceTree = "<group>";
+		};
+		FC4256371DBCFC78002FF127 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				B61542161D294E4100091E73 /* UdpCASSocket.swift */,
+				FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */,
+			);
+			name = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		FC4256381DBCFC8A002FF127 /* Socks */ = {
+			isa = PBXGroup;
+			children = (
+				FC42563D1DBD0259002FF127 /* UdpSocksSocket.swift */,
+				FC42563F1DBD2952002FF127 /* LiFXSocksSocket.swift */,
+			);
+			name = Socks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -712,7 +750,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1A93BF166B41AD2AC43DC3AF /* [CP] Copy Pods Resources */ = {
@@ -742,7 +780,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		37A1B03118736334E904A4C5 /* [CP] Copy Pods Resources */ = {
@@ -802,7 +840,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9F1EF04542A566BCFEC082BF /* [CP] Embed Pods Frameworks */ = {
@@ -832,7 +870,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CC8D5E512AA9040BAD7D0AA5 /* [CP] Copy Pods Resources */ = {
@@ -862,7 +900,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E042D0A0881A88882C7D6A4C /* [CP] Embed Pods Frameworks */ = {
@@ -892,7 +930,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		ED565AA380D085459E407A67 /* [CP] Embed Pods Frameworks */ = {
@@ -939,6 +977,7 @@
 				B61542381D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B61542681D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
 				B615421D1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
+				FC4256341DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B61542711D29845500091E73 /* LiFXHeader.swift in Sources */,
 				B61542291D294E4100091E73 /* CommandSetColor.swift in Sources */,
 				B61542411D294E4100091E73 /* LiFXMessage.swift in Sources */,
@@ -950,7 +989,8 @@
 				B61542441D294E4100091E73 /* LiFXSession.swift in Sources */,
 				B61542261D294E4100091E73 /* CommandGetPower.swift in Sources */,
 				B615422C1D294E4100091E73 /* CommandSwitchOff.swift in Sources */,
-				B615426B1D294E4100091E73 /* UDPSocket.swift in Sources */,
+				B615426B1D294E4100091E73 /* UdpCASSocket.swift in Sources */,
+				FC42563A1DBCFD52002FF127 /* LiFXCASSocket.swift in Sources */,
 				B61542471D294E4100091E73 /* Message.swift in Sources */,
 				B615422F1D294E4100091E73 /* CommandSwitchOn.swift in Sources */,
 				B615425C1D294E4100091E73 /* Session.swift in Sources */,
@@ -974,6 +1014,7 @@
 				B61542571D294E4100091E73 /* Queue.swift in Sources */,
 				B615423F1D294E4100091E73 /* LiFXLightInfo.swift in Sources */,
 				B61542331D294E4100091E73 /* CommandToggle.swift in Sources */,
+				FC42563E1DBD0259002FF127 /* UdpSocksSocket.swift in Sources */,
 				B61542391D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B61542691D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
 				B615421E1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
@@ -988,10 +1029,11 @@
 				B61542451D294E4100091E73 /* LiFXSession.swift in Sources */,
 				B61542511D294E4100091E73 /* OnAll.swift in Sources */,
 				B61542271D294E4100091E73 /* CommandGetPower.swift in Sources */,
+				FC4256401DBD2952002FF127 /* LiFXSocksSocket.swift in Sources */,
 				B61542661D294E4100091E73 /* ToggleLights.swift in Sources */,
+				FC4256351DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B615422D1D294E4100091E73 /* CommandSwitchOff.swift in Sources */,
 				B615424B1D294E4100091E73 /* OffAll.swift in Sources */,
-				B615426C1D294E4100091E73 /* UDPSocket.swift in Sources */,
 				B61542481D294E4100091E73 /* Message.swift in Sources */,
 				B61542301D294E4100091E73 /* CommandSwitchOn.swift in Sources */,
 				B615425D1D294E4100091E73 /* Session.swift in Sources */,
@@ -1021,6 +1063,7 @@
 				B615423A1D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B615426A1D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
 				B615421F1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
+				FC4256361DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B61542731D29845500091E73 /* LiFXHeader.swift in Sources */,
 				B615422B1D294E4100091E73 /* CommandSetColor.swift in Sources */,
 				B61542431D294E4100091E73 /* LiFXMessage.swift in Sources */,
@@ -1032,7 +1075,8 @@
 				B61542461D294E4100091E73 /* LiFXSession.swift in Sources */,
 				B61542281D294E4100091E73 /* CommandGetPower.swift in Sources */,
 				B615422E1D294E4100091E73 /* CommandSwitchOff.swift in Sources */,
-				B615426D1D294E4100091E73 /* UDPSocket.swift in Sources */,
+				B615426D1D294E4100091E73 /* UdpCASSocket.swift in Sources */,
+				FC42563C1DBCFD52002FF127 /* LiFXCASSocket.swift in Sources */,
 				B61542491D294E4100091E73 /* Message.swift in Sources */,
 				B61542311D294E4100091E73 /* CommandSwitchOn.swift in Sources */,
 				B615425E1D294E4100091E73 /* Session.swift in Sources */,

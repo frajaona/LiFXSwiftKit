@@ -110,6 +110,9 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
 
   s.source_files  = "Sources", "Sources/**/*.{h,m}"
   s.exclude_files = "Sources/Exclude", "Sources/AppleScriptCommands"
+  s.ios.exclude_files = "Sources/LiFXSocksSocket.swift", "Sources/UdpSocksSocket.swift"
+  s.tvos.exclude_files = "Sources/LiFXSocksSocket.swift", "Sources/UdpSocksSocket.swift"
+  s.osx.exclude_files = "Sources/LiFXCASSocket.swift", "Sources/UdpCASSocket.swift"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -148,10 +151,9 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
-  s.dependency 'CocoaAsyncSocket', '~> 7.4.3'
+  s.ios.dependency 'CocoaAsyncSocket', '~> 7.5.0'
+  s.tvos.dependency 'CocoaAsyncSocket', '~> 7.5.0'
+  s.osx.dependency 'socks', '~> 1.0.3'
 
 end
