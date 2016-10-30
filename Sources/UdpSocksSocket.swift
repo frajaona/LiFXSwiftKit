@@ -96,9 +96,7 @@ class UdpSocksSocket: Socket {
             [unowned self] in
             if self.connected {
                 do {
-                    let bSocket = try UDPInternetSocket(address: InternetAddress.init(hostname: address, port: self.port))
-                    try bSocket.sendto(data: bytes)
-                    try bSocket.close()
+                    try self.socket?.sendto(data: bytes, ip: address, port: self.port)
                     DispatchQueue.main.async {
                         [unowned self] in
                         self.delegate.onSent(at: address, by: self)
