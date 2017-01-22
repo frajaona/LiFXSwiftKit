@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LiFXSwiftKit"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "Swift library used to control LiFX bulbs using Lan Protocol. Available for iOS, tvOS and macOS"
 
   # This description is used to generate tags and improve search results.
