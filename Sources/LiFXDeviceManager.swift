@@ -139,13 +139,13 @@ public class LiFXDeviceManager {
         }
     }
     
-    func getDevicePowers() {
+    public func getDevicePowers() {
         for (_, device) in devices {
             device.getPower()
         }
     }
     
-    func getPower(_ deviceUid: String) {
+    public func getPower(_ deviceUid: String) {
         for (_, device) in devices {
             if device.uid == deviceUid {
                 device.getPower()
