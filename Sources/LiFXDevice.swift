@@ -43,12 +43,41 @@ public class LiFXDevice {
     
     var stateMessage: LiFXMessage!
     
-    var powerLevel = 0
+	var powerLevel = 0 {
+		didSet {
+			powerLevelProperty.value = powerLevel
+		}
+	}
+	    
+	public let powerLevelProperty = Property(value: 0)
     
-    var hue = 0
-    var saturation = 0
-    var brightness = 0
-    var kelvin = 0
+    var hue = 0 {
+        didSet {
+            hueProperty.value = hue
+        }
+    }
+    public let hueProperty = Property(value: 0)
+    
+    var saturation = 0 {
+        didSet {
+            saturationProperty.value = hue
+        }
+    }
+    public let saturationProperty = Property(value: 0)
+    
+    var brightness = 0 {
+        didSet {
+            brightnessProperty.value = hue
+        }
+    }
+    public let brightnessProperty = Property(value: 0)
+    
+    var kelvin = 0 {
+        didSet {
+            kelvinProperty.value = hue
+        }
+    }
+    public let kelvinProperty = Property(value: 0)
     
     public var uid: String {
         return address + ":" + port.description

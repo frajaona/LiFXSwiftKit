@@ -35,9 +35,8 @@ struct LiFXLightInfo {
         index += 2
         kelvin = LiFXMessage.getIntValue(fromData: [bytes[index + 1], bytes[index + 2]])
         index += 2
-        index += 2
         power = LiFXMessage.getIntValue(fromData: [bytes[index + 1], bytes[index + 2]])
-        index += 2
+        index += 4
         let labelArray: [UInt8] = Array(bytes[index...index + 32])
         label = LiFXMessage.getStringValue(fromData: labelArray) ?? ""
     }

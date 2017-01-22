@@ -103,6 +103,9 @@
 		FC42563C1DBCFD52002FF127 /* LiFXCASSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */; };
 		FC42563E1DBD0259002FF127 /* UdpSocksSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42563D1DBD0259002FF127 /* UdpSocksSocket.swift */; };
 		FC4256401DBD2952002FF127 /* LiFXSocksSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42563F1DBD2952002FF127 /* LiFXSocksSocket.swift */; };
+		FC9E0DF81E35253A0066799B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E0DF71E35253A0066799B /* Property.swift */; };
+		FC9E0DF91E35253A0066799B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E0DF71E35253A0066799B /* Property.swift */; };
+		FC9E0DFA1E35253A0066799B /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E0DF71E35253A0066799B /* Property.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +202,7 @@
 		FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXCASSocket.swift; sourceTree = "<group>"; };
 		FC42563D1DBD0259002FF127 /* UdpSocksSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdpSocksSocket.swift; sourceTree = "<group>"; };
 		FC42563F1DBD2952002FF127 /* LiFXSocksSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXSocksSocket.swift; sourceTree = "<group>"; };
+		FC9E0DF71E35253A0066799B /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +394,7 @@
 				B61542041D294E4100091E73 /* LiFXDevice.swift */,
 				B61542061D294E4100091E73 /* LiFXGroup.swift */,
 				B61542071D294E4100091E73 /* LiFXLightInfo.swift */,
+				FC9E0DF71E35253A0066799B /* Property.swift */,
 			);
 			name = Device;
 			sourceTree = "<group>";
@@ -976,6 +981,7 @@
 				B61542321D294E4100091E73 /* CommandToggle.swift in Sources */,
 				B61542381D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B61542681D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
+				FC9E0DF81E35253A0066799B /* Property.swift in Sources */,
 				B615421D1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
 				FC4256341DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B61542711D29845500091E73 /* LiFXHeader.swift in Sources */,
@@ -1024,6 +1030,7 @@
 				B61542601D294E4100091E73 /* Socket.swift in Sources */,
 				B61542361D294E4100091E73 /* LiFXDevice.swift in Sources */,
 				B615423C1D294E4100091E73 /* LiFXGroup.swift in Sources */,
+				FC9E0DF91E35253A0066799B /* Property.swift in Sources */,
 				B615425A1D294E4100091E73 /* RetransmissionBuffer.swift in Sources */,
 				B615421B1D294E4100091E73 /* Command.swift in Sources */,
 				B61542451D294E4100091E73 /* LiFXSession.swift in Sources */,
@@ -1062,6 +1069,7 @@
 				B61542341D294E4100091E73 /* CommandToggle.swift in Sources */,
 				B615423A1D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B615426A1D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
+				FC9E0DFA1E35253A0066799B /* Property.swift in Sources */,
 				B615421F1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
 				FC4256361DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B61542731D29845500091E73 /* LiFXHeader.swift in Sources */,

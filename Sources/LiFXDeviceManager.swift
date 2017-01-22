@@ -153,6 +153,20 @@ public class LiFXDeviceManager {
         }
     }
     
+    public func getDeviceInfo() {
+        for (_, device) in devices {
+            device.getInfo()
+        }
+    }
+    
+    public func getInfo(_ deviceUid: String) {
+        for (_, device) in devices {
+            if device.uid == deviceUid {
+                device.getInfo()
+            }
+        }
+    }
+    
     public func setBrightness(_ brightness: Int) {
         for (_, device) in devices {
             device.setBrightness(brightness)
