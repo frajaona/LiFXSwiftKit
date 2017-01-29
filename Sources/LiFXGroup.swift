@@ -42,7 +42,7 @@ struct LiFXGroup {
             }
             valid = label != nil
         }
-        print("Label group is \(label)")
+        Log.debug("Label group is \(label)")
         self.group = group ?? [UInt8]()
         self.label = label ?? ""
         self.valid = valid

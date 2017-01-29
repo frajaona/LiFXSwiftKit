@@ -52,17 +52,17 @@ class LiFXSocksSocket: LiFXSocket {
 extension LiFXSocksSocket: UdpSocksSocketDelegate {
     
     func onConnected(to socket: UdpSocksSocket) {
-        print("socked did connect")
+        Log.debug("socked did connect")
     }
     
     func onReceive(data: NSData, from address: String, by socket: UdpSocksSocket) {
-        print("\nReceive data from address: \(address)")
-        //print(data.description)
+        Log.debug("\nReceive data from address: \(address)")
+        //Log.debug(data.description)
         let message = LiFXMessage(fromData: data as Data)
         messageHandler?(message, address)
     }
     
     func onSent(at address: String, by socket: UdpSocksSocket) {
-        print("socked did send data")
+        Log.debug("socked did send data")
     }
 }

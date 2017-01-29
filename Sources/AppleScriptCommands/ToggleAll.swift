@@ -26,7 +26,7 @@ import Foundation
 
 class ToggleAll: NSScriptCommand {
     override func performDefaultImplementation() -> Any? {
-        print("running ToggleAll command")
+        Log.debug("running ToggleAll command")
         LiFXDeviceManager.sharedInstance.toggleDevices()
         return nil
     }

@@ -35,7 +35,7 @@ class LiFXSession: Session {
     var broadcastAddress: String? {
         didSet {
             if (isConnected()) {
-                print("Cannot change broadcast address while connected")
+                Log.debug("Cannot change broadcast address while connected")
                 broadcastAddress = oldValue
             }
         }
@@ -72,7 +72,7 @@ class LiFXSession: Session {
             discoveryWorkItem = workItem
             workItem.perform()
         } else {
-            print("Explorer already started")
+            Log.debug("Explorer already started")
         }
     }
     
@@ -87,7 +87,7 @@ class LiFXSession: Session {
             udpSocket.openConnection()
             discoverDevices()
         } else {
-            print("Explorer already started")
+            Log.debug("Explorer already started")
         }
     }
 
@@ -108,7 +108,7 @@ class LiFXSession: Session {
     }
     
     fileprivate func handleMessage(_ message: LiFXMessage, address: String) {
-        print("Handle message: \(message)")
+        Log.debug("Handle message: \(message)")
         delegate?.liFXSession(self, didReceiveMessage: message ,fromAddress: address)
     }
     

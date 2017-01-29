@@ -11,12 +11,17 @@ def socks_pods()
   pod 'socks', '~> 1.0.3'
 end
 
+def logging_pod()
+  pod 'Evergreen', '~> 1.0.0'
+end
+
 target 'LiFXSwiftKitiOS' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for LiFXSwiftKitiOS
   cas_pods()
+  logging_pod()
 
   target 'LiFXSwiftKitiOSTests' do
     inherit! :search_paths
@@ -31,6 +36,7 @@ target 'LiFXSwiftKitMacOS' do
 
   # Pods for LiFXSwiftKitMacOS
   socks_pods()
+  logging_pod()
 
   target 'LiFXSwiftKitMacOSTests' do
     inherit! :search_paths
@@ -45,6 +51,7 @@ target 'LiFXSwiftKitTVOS' do
 
   # Pods for LiFXSwiftKitTVOS
   cas_pods()
+  logging_pod()
 
   target 'LiFXSwiftKitTVOSTests' do
     inherit! :search_paths

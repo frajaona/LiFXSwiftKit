@@ -51,7 +51,7 @@ class UdpSocksSocket: Socket {
         }
         catch let error {
             socket = nil
-            print("failed creating socket: \(error)")
+            Log.debug("failed creating socket: \(error)")
         }
         
     }
@@ -64,7 +64,7 @@ class UdpSocksSocket: Socket {
                 startReceivingMessage()
                 delegate.onConnected(to: self)
             } catch let error {
-                print("Cannot connect to host: \(error)")
+                Log.debug("Cannot connect to host: \(error)")
                 connected = false
             }
             return connected
@@ -77,7 +77,7 @@ class UdpSocksSocket: Socket {
             do {
                 try socket?.close()
             } catch let error {
-                print("Cannot close socket: \(error)")
+                Log.debug("Cannot close socket: \(error)")
             }
         }
         connected = false
@@ -102,7 +102,7 @@ class UdpSocksSocket: Socket {
                         self.delegate.onSent(at: address, by: self)
                     }
                 } catch let error {
-                    print("failed sending message: \(error)")
+                    Log.debug("failed sending message: \(error)")
                 }
             }
         }
@@ -124,7 +124,7 @@ class UdpSocksSocket: Socket {
                         }
                     }
                 } catch let error {
-                    print("failed reading bytes: \(error)")
+                    Log.debug("failed reading bytes: \(error)")
                 }
             }
         }

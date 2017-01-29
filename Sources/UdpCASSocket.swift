@@ -41,7 +41,7 @@ struct UdpCASSocket<T: Message>: Socket {
         do {
             try socket.bind(toPort: port)
         } catch let error as NSError {
-            print("Cannot bind socket to port: \(error.description)")
+            Log.debug("Cannot bind socket to port: \(error.description)")
             closeConnection()
             return false
         }
@@ -49,7 +49,7 @@ struct UdpCASSocket<T: Message>: Socket {
         do {
             try socket.beginReceiving()
         } catch let error as NSError {
-            print("Cannot begin receiving: \(error.description)")
+            Log.debug("Cannot begin receiving: \(error.description)")
             closeConnection()
             return false
         }
@@ -58,7 +58,7 @@ struct UdpCASSocket<T: Message>: Socket {
         do {
             try socket.enableBroadcast(enableBroadcast)
         } catch let error as NSError {
-            print("Cannot enable broadcast on socket: \(error.description)")
+            Log.debug("Cannot enable broadcast on socket: \(error.description)")
             closeConnection()
             return false
         }
@@ -68,7 +68,7 @@ struct UdpCASSocket<T: Message>: Socket {
     
     func sendMessage<T : Message>(_ message: T, address: String) {
         let strData = message.getData()
-        print("\n\nsending(\(strData.count)): \(strData.description)\n\n")
+        Log.debug("\n\nsending(\(strData.count)): \(strData.description)\n\n")
         socket.send(message.getData() as Data!, toHost: address, port: port, withTimeout: -1, tag: 0)
     }
     

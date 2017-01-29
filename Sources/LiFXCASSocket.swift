@@ -53,20 +53,20 @@ class LiFXCASSocket: LiFXSocket {
 extension LiFXCASSocket: GCDAsyncUdpSocketDelegate {
     
     @objc func udpSocket(_ sock: GCDAsyncUdpSocket, didSendDataWithTag tag: Int) {
-        print("socked did send data with tag \(tag)")
+        Log.debug("socked did send data with tag \(tag)")
     }
     
     @objc func udpSocket(_ sock: GCDAsyncUdpSocket, didNotSendDataWithTag tag: Int, dueToError error: Error) {
-        print("socked did not send data with tag \(tag)")
+        Log.debug("socked did not send data with tag \(tag)")
     }
     
     @objc func udpSocketDidClose(_ sock: GCDAsyncUdpSocket, withError error: Error) {
-        print("Socket closed: \(error.localizedDescription)")
+        Log.debug("Socket closed: \(error.localizedDescription)")
     }
     
     @objc func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        print("\nReceive data from isIPv4=\(GCDAsyncUdpSocket.isIPv4Address(address)) address: \(GCDAsyncUdpSocket.host(fromAddress: address))")
-        //print(data.description)
+        Log.debug("\nReceive data from isIPv4=\(GCDAsyncUdpSocket.isIPv4Address(address)) address: \(GCDAsyncUdpSocket.host(fromAddress: address))")
+        //Log.debug(data.description)
         let message = LiFXMessage(fromData: data)
         messageHandler?(message, GCDAsyncUdpSocket.host(fromAddress: address)!)
     }

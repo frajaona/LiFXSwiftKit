@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CocoaAsyncSocket-iOS/CocoaAsyncSocket.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Evergreen-iOS/Evergreen.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CocoaAsyncSocket-iOS/CocoaAsyncSocket.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Evergreen-iOS/Evergreen.framework"
 fi

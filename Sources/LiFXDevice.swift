@@ -160,7 +160,7 @@ public class LiFXDevice {
             
         case LiFXMessage.MessageType.deviceStateLabel:
             label = LiFXMessage.getStringValue(fromData: message.payload!)
-            print("Device Label is \(label)")
+            Log.debug("Device Label is \(label)")
             
         case LiFXMessage.MessageType.lightState:
             let info = LiFXLightInfo(fromData: message.payload!)

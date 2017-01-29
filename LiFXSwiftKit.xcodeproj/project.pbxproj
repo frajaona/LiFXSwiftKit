@@ -96,6 +96,9 @@
 		B61542731D29845500091E73 /* LiFXHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61542701D29845500091E73 /* LiFXHeader.swift */; };
 		C9446346EBDEED5C07F8577A /* Pods_LiFXSwiftKitMacOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC72CAD869FBF113564DD43 /* Pods_LiFXSwiftKitMacOSTests.framework */; };
 		F0C56F9529382397599724FF /* Pods_LiFXSwiftKitMacOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 375658B873248BCE7A7B9844 /* Pods_LiFXSwiftKitMacOS.framework */; };
+		FC40D7FC1E3E4FC200F06A96 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC40D7FB1E3E4FC200F06A96 /* Logger.swift */; };
+		FC40D7FD1E3E4FC200F06A96 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC40D7FB1E3E4FC200F06A96 /* Logger.swift */; };
+		FC40D7FE1E3E4FC200F06A96 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC40D7FB1E3E4FC200F06A96 /* Logger.swift */; };
 		FC4256341DBCFBFA002FF127 /* LiFXSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */; };
 		FC4256351DBCFBFA002FF127 /* LiFXSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */; };
 		FC4256361DBCFBFA002FF127 /* LiFXSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */; };
@@ -198,6 +201,7 @@
 		B6C648F95C19B53B9EC88513 /* Pods-LiFXSwiftKitiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFXSwiftKitiOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiFXSwiftKitiOSTests/Pods-LiFXSwiftKitiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		E61DE280830370982D739486 /* Pods-LiFXSwiftKitTVOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFXSwiftKitTVOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFXSwiftKitTVOSTests/Pods-LiFXSwiftKitTVOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F6C5E420FD664E2F98F83D97 /* Pods-LiFXSwiftKitiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiFXSwiftKitiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiFXSwiftKitiOS/Pods-LiFXSwiftKitiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FC40D7FB1E3E4FC200F06A96 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		FC4256331DBCFBFA002FF127 /* LiFXSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXSocket.swift; sourceTree = "<group>"; };
 		FC4256391DBCFD52002FF127 /* LiFXCASSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiFXCASSocket.swift; sourceTree = "<group>"; };
 		FC42563D1DBD0259002FF127 /* UdpSocksSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdpSocksSocket.swift; sourceTree = "<group>"; };
@@ -384,6 +388,7 @@
 				B61541F41D294C9000091E73 /* Transport */,
 				B61541F31D294C7700091E73 /* Device */,
 				B61541F91D294D4D00091E73 /* AppleScriptCommands */,
+				FC40D7FB1E3E4FC200F06A96 /* Logger.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -982,6 +987,7 @@
 				B61542381D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B61542681D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
 				FC9E0DF81E35253A0066799B /* Property.swift in Sources */,
+				FC40D7FC1E3E4FC200F06A96 /* Logger.swift in Sources */,
 				B615421D1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
 				FC4256341DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B61542711D29845500091E73 /* LiFXHeader.swift in Sources */,
@@ -1041,6 +1047,7 @@
 				FC4256351DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B615422D1D294E4100091E73 /* CommandSwitchOff.swift in Sources */,
 				B615424B1D294E4100091E73 /* OffAll.swift in Sources */,
+				FC40D7FD1E3E4FC200F06A96 /* Logger.swift in Sources */,
 				B61542481D294E4100091E73 /* Message.swift in Sources */,
 				B61542301D294E4100091E73 /* CommandSwitchOn.swift in Sources */,
 				B615425D1D294E4100091E73 /* Session.swift in Sources */,
@@ -1070,6 +1077,7 @@
 				B615423A1D294E4100091E73 /* LiFXDeviceManager.swift in Sources */,
 				B615426A1D294E4100091E73 /* TransmitProtocolHandler.swift in Sources */,
 				FC9E0DFA1E35253A0066799B /* Property.swift in Sources */,
+				FC40D7FE1E3E4FC200F06A96 /* Logger.swift in Sources */,
 				B615421F1D294E4100091E73 /* CommandGetGroup.swift in Sources */,
 				FC4256361DBCFBFA002FF127 /* LiFXSocket.swift in Sources */,
 				B61542731D29845500091E73 /* LiFXHeader.swift in Sources */,

@@ -84,8 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Evergreen-OSX/Evergreen.framework"
   install_framework "$BUILT_PRODUCTS_DIR/socks/socks.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Evergreen-OSX/Evergreen.framework"
   install_framework "$BUILT_PRODUCTS_DIR/socks/socks.framework"
 fi

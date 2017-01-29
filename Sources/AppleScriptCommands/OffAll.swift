@@ -26,7 +26,7 @@ import Foundation
 
 class OffAll: NSScriptCommand {
     override func performDefaultImplementation() -> Any? {
-        print("running OffAll command")
+        Log.debug("running OffAll command")
         LiFXDeviceManager.sharedInstance.switchOffDevices()
         return nil
     }

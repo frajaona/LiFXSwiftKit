@@ -28,7 +28,7 @@ class OffLights: NSScriptCommand {
     override func performDefaultImplementation() -> Any? {
         
         if let directArgument = directParameter, let arguments = directArgument as? [String] , arguments.count > 0 {
-            print("running OffLights command with string args: \(directArgument)")
+            Log.debug("running OffLights command with string args: \(directArgument)")
             if arguments[0] == "group" {
                 for index in 1 ..< arguments.count {
                     LiFXDeviceManager.sharedInstance.switchOffGroup(arguments[index])

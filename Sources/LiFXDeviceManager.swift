@@ -204,7 +204,7 @@ extension LiFXDeviceManager: LiFXSessionDelegate {
         case LiFXMessage.MessageType.deviceStateService:
             if devices[address] == nil {
                 devices[address] = LiFXDevice(fromMessage: message, address: address, session: session)
-                print("Found new device with IP address: \(address)")
+                Log.debug("Found new device with IP address: \(address)")
                 notifyDeviceListObservers()
                 devices[address]!.getGroup()
                 devices[address]!.getInfo()
