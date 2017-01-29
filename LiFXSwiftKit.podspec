@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LiFXSwiftKit"
-  s.version      = "0.3.2"
+  s.version      = "0.3.3"
   s.summary      = "Swift library used to control LiFX bulbs using Lan Protocol. Available for iOS, tvOS and macOS"
 
   # This description is used to generate tags and improve search results.
@@ -120,7 +120,10 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
 
 
   s.ios.dependency 'CocoaAsyncSocket', '~> 7.5.0'
+  s.ios.dependency 'Evergreen', '~> 1.0.0'
   s.tvos.dependency 'CocoaAsyncSocket', '~> 7.5.0'
+  s.tvos.dependency 'Evergreen', '~> 1.0.0'
   s.osx.dependency 'socks', '~> 1.0.3'
+  s.osx.dependency 'Evergreen', '~> 1.0.0'
 
 end
