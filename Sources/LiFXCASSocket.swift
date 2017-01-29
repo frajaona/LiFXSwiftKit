@@ -17,7 +17,7 @@
 import Foundation
 import CocoaAsyncSocket
 
-class LiFXCASSocket: LiFXSocket {
+class LiFXCASSocket: NSObject, LiFXSocket {
     
     var messageHandler: ((LiFXMessage, String) -> ())?
     
