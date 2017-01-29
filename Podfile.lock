@@ -1,17 +1,20 @@
 PODS:
-  - CocoaAsyncSocket (7.5.0):
-    - CocoaAsyncSocket/GCD (= 7.5.0)
-  - CocoaAsyncSocket/GCD (7.5.0)
+  - CocoaAsyncSocket (7.5.1):
+    - CocoaAsyncSocket/GCD (= 7.5.1)
+  - CocoaAsyncSocket/GCD (7.5.1)
+  - Evergreen (1.0.0)
   - socks (1.0.3)
 
 DEPENDENCIES:
   - CocoaAsyncSocket (~> 7.5.0)
+  - Evergreen (~> 1.0.0)
   - socks (~> 1.0.3)
 
 SPEC CHECKSUMS:
-  CocoaAsyncSocket: 3baeb1ddd969f81cf9fca81053ae49ef2d1cbbfa
+  CocoaAsyncSocket: e0a7e93b2ffa411592ff87e58524fbbc9b95b4fa
+  Evergreen: 5777ae79fcf87a2780761ec2ddf855482cb6e4d9
   socks: a65164205e67e0dbe50fbdacfe286abce4190d41
 
-PODFILE CHECKSUM: b7ec8e9ba879690094115eed0da8c9925dba1aeb
+PODFILE CHECKSUM: a621e801f152e0524f9b625a28a9ee1baa5e2a52
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.2.0

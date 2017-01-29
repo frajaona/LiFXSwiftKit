@@ -69,7 +69,8 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :tag => "#{s.version}" }
+  #s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :branch => 'master' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

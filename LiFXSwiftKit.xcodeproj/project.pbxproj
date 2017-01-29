@@ -653,16 +653,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Fred Rajaona";
 				TargetAttributes = {
 					B61541241D29496E00091E73 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					B615412D1D29496E00091E73 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					B61541401D29499400091E73 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1270,6 +1270,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00681D7B37495B52810E0567 /* Pods-LiFXSwiftKitiOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LiFXSwiftKitiOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.doudou.LiFXSwiftKitiOSTests;
@@ -1282,6 +1283,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B6C648F95C19B53B9EC88513 /* Pods-LiFXSwiftKitiOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LiFXSwiftKitiOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.doudou.LiFXSwiftKitiOSTests;
@@ -1343,6 +1345,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E187C02ACFDC040A18AA087 /* Pods-LiFXSwiftKitMacOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LiFXSwiftKitMacOSTests/Info.plist;
@@ -1359,6 +1362,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24369A88C7E5A35883EAA998 /* Pods-LiFXSwiftKitMacOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LiFXSwiftKitMacOSTests/Info.plist;
@@ -1420,6 +1424,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E61DE280830370982D739486 /* Pods-LiFXSwiftKitTVOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LiFXSwiftKitTVOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.doudou.LiFXSwiftKitTVOSTests;
@@ -1433,6 +1438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81C11985C54BF71825CA41EC /* Pods-LiFXSwiftKitTVOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LiFXSwiftKitTVOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.doudou.LiFXSwiftKitTVOSTests;
