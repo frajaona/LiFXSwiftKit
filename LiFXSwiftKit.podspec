@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LiFXSwiftKit"
-  s.version      = "0.3.4"
+  s.version      = "0.3.5"
   s.summary      = "Swift library used to control LiFX bulbs using Lan Protocol. Available for iOS, tvOS and macOS"
 
   # This description is used to generate tags and improve search results.
@@ -69,8 +69,8 @@ s.license      = { :type => 'Apache License, Version 2.0', :text =>
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  #s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :tag => "#{s.version}" }
-  s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :branch => 'master' }
+  s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :tag => "#{s.version}" }
+  #s.source       = { :git => "https://git.groriri.me/frajaona/LiFXSwiftKit.git", :branch => 'master' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
